@@ -1,0 +1,200 @@
+<div class="admin_header relative" ng-click="view_profile_false();">
+    <div class="main_header">
+        <div class="relative">
+            <div class="header_flex">
+                <div class="header_logo">
+                    <a href="{{rootUrl}}">
+                        <div class="header_logo_img">
+                            <img src="{{admin_data.profile_image}}" alt="">
+                        </div>
+                    </a>
+                </div>
+                <div class="user_login header_logo relative" ng-click="view_profile(); $event.stopPropagation();">
+                    <a href="javascript:void(0);">
+                        <p class="capitalize" style="display: flex; gap: 0.5rem; border: 1px solid #777777; padding: 0.5rem 1rem; border-radius: 5px;">
+                            <span class="material-symbols-outlined">
+                                account_circle
+                            </span> {{admin_data.name}}
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="profile_menu_block" ng-class="{'active' : view_profile_f}">
+            <div class="profile_sub_image">
+                <img src="{{admin_data.profile_image}}" alt="">
+            </div>
+            <div class="profile_menu_text" ng-click="view_profile_false(); $event.stopPropagation();">
+                <a href="profile">
+                    <p class="capitalize">{{admin_data.name}}</p>
+                    <span>admin</span>
+                </a>
+                <a href="profile">
+                    <p class="capitalize">Edit Profile</p>
+                </a>
+                <a href="javascript:void(0);" ng-click="logout();">
+                    <p class="capitalize">Log Out</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="header_menu_list">
+        <div class="page_list">
+            <ul>
+                <li class="page_items" ng-class="{'active' : activePath == '/'}">
+                    <a href="{{rootUrl}}">
+                        <div class="page_list_img">
+                            <span class="material-symbols-outlined">
+                                home
+                            </span>
+                        </div>
+                        <div>
+                            <p>Dashboard</p>
+                        </div>
+                    </a>
+                </li>
+                <!-- <li class="page_items" ng-class="{'active' : activePath == '/career_inquiry'}">
+                    <a href="career_inquiry">
+                        <div class="page_list_img">
+                            <span class="material-symbols-outlined">
+                                work
+                            </span>
+                        </div>
+                        <div>
+                            <p>Career</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="page_items"
+                    ng-class="{'active' : activePath == '/career_list' || activePath == '/career/add' || activePath.indexOf('/career/details/') != -1 || activePath.indexOf('/career/seo/') != -1}">
+                    <a href="career_list">
+                        <div class="page_list_img">
+                            <span class="material-symbols-outlined">
+                                list_alt
+                            </span>
+                        </div>
+                        <div>
+                            <p>Career Jobs</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="page_items" ng-class="{'active' : activePath == '/feedback'}">
+                    <a href="feedback">
+                        <div class="page_list_img">
+                            <span class="material-symbols-outlined">
+                                feed
+                            </span>
+                        </div>
+                        <div>
+                            <p>Feedback</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="page_items"
+                    ng-class="{'active' : activePath == '/categories' || activePath == '/categories/add' || activePath.indexOf('/categories/details/') != -1}">
+                    <a href="categories">
+                        <div class="page_list_img">
+                            <span class="material-symbols-outlined">
+                                category
+                            </span>
+                        </div>
+                        <div>
+                            <p>Categories</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="page_items"
+                    ng-class="{'active' : activePath == '/products' || activePath == '/products/add' || activePath.indexOf('/products/details/') != -1 || activePath.indexOf('/products/seo/') != -1}">
+                    <a href="products">
+                        <div class="page_list_img">
+                            <span class="material-symbols-outlined">
+                                inventory_2
+                            </span>
+                        </div>
+                        <div>
+                            <p>Products</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="page_items"
+                    ng-class="{'active' : activePath == '/accessories/' || activePath == '/accessories/add' || activePath.indexOf('/accessories/details/') != -1}">
+                    <a href="accessories">
+                        <div class="page_list_img">
+                            <span class="material-symbols-outlined">
+                                build_circle
+                            </span>
+                        </div>
+                        <div>
+                            <p>Accessories</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="page_items"
+                    ng-class="{'active' : activePath == '/blogs' || activePath == '/blogs/add' || activePath.indexOf('/blogs/details/') != -1 || activePath.indexOf('/blogs/seo/') != -1}">
+                    <a href="blogs">
+                        <div class="page_list_img">
+                            <span class="material-symbols-outlined">
+                                article
+                            </span>
+                        </div>
+                        <div>
+                            <p>Blogs</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="page_items"
+                    ng-class="{'active' : activePath == '/videos' || activePath == '/videos/add' || activePath.indexOf('/videos/details/') != -1 }">
+                    <a href="videos">
+                        <div class="page_list_img">
+                            <span class="material-symbols-outlined">
+                                movie
+                            </span>
+                        </div>
+                        <div>
+                            <p>Videos</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="page_items"
+                    ng-class="{'active' : activePath == '/applications' || activePath == '/applications/add' || activePath.indexOf('/applications/details/') != -1 }">
+                    <a href="applications">
+                        <div class="page_list_img">
+                            <span class="material-symbols-outlined">
+                                article
+                            </span>
+                        </div>
+                        <div>
+                            <p>Applications</p>
+                        </div>
+                    </a>
+                </li>
+                <li class="page_items" ng-class="{'active' : activePath == '/contact'}">
+                    <a href="contact">
+                        <div class="page_list_img">
+                            <span class="material-symbols-outlined">
+                                contact_mail
+                            </span>
+                        </div>
+                        <div>
+                            <p>Contact</p>
+                        </div>
+                    </a>
+                </li> -->
+                <!-- <li class="page_items" ng-class="{'active' : activePath == '/subscribers'}">
+                    <a href="subscribers">
+                        <div class="page_list_img">
+                            <span class="material-symbols-outlined">
+                                contact_mail
+                            </span>
+                        </div>
+                        <div>
+                            <p>Subscribers</p>
+                        </div>
+                    </a>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,235 @@
+<div class="main_page_div" id="main_page_div" ng-if="$storage.login_role != 'master_admin'">
+
+    <div class="page_title_flex">
+        <div class="page_title">
+            <h2>Inquiries</h2>
+        </div>
+    </div>
+
+  
+    <div class="page_filters_list">
+        <div class="data_inquiry_flex">
+            <div class="page_filter_name">
+                <p>Showing {{((currentPage-1)*pagelimit)+1}} to {{((currentPage)*pagelimit)}} of {{totalRecords}}
+                    Inquiries
+                </p>
+            </div>
+            <div>
+                <p>|</p>
+            </div>
+            <div class="relative">
+                <p style="display: flex; align-items: center;">{{date_label}} <span class="material-symbols-outlined">
+                        keyboard_arrow_down
+                    </span></p>
+                <input date-range-picker readonly="readonly" placeholder="Time Period" class="form-control input_inner"
+                    name="deal_date" type="none" ng-model="filterObjInquiry.date" max="MaxDate"
+                    options="options_date_all_inquiry" autocomplete="off" ng-disabled="isDashInquiryLoading"
+                    style="position: absolute;top: 0;left: 0;width: 100%;opacity: 0;height: 100%;padding: 0;cursor: pointer;" />
+            </div>
+            <p class="custom_date_show" ng-if="date_label == 'Custom range'">
+                {{date_show_all_inquiry.start_date}}&nbsp;to&nbsp;{{date_show_all_inquiry.end_date}}
+            </p>
+        </div>
+        <div class="page_search_box">
+            <div class="page_filter_name">
+                <p>Inquiry Type :</p>
+            </div>
+            <div class="event_select">
+                <select name="inquiry_type" id="inquiry_type" ng-model="inquiry_type" ng-change="load_all_inquires(0, inquiry_type);">
+                    <option value="">All</option>
+                    <option value="{{data.type}}" ng-repeat="data in type_list"><p class="capitalize">{{data.type}}</p></option>
+                </select>
+            </div>
+            <div class="input_fields">
+                <input type="text" name="search_page" id="search_page" ng-model="search_obj.search_str"
+                    class="form_control" autocomplete="off" style="font-size: 1.2rem !important;"
+                    ng-enter="load_all_inquires(0);">
+            </div>
+            <div class="submit_button">
+                <button ng-click="load_all_inquires(0);">
+                    <p>Search</p>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="page_content_block" ng-if="!isDataLoading">
+        <div class="page_content_block_inner">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 20%;">
+                            Name
+                        </th>
+                        <th style="width: 20%;">
+                            Email
+                        </th>
+                        <th style="width: 20%;">
+                            Contact
+                        </th>
+                        <th style="width: 20%;">
+                            Type
+                        </th>
+                        <th style="width: 20%;">
+                            Date
+                        </th>
+                    </tr>
+                </thead>
+                
+                <tbody ng-if="all_inquires_list.length > 0">
+                    <tr ng-repeat="data in all_inquires_list">
+                        <td class="capitalize field_title">
+                            <p ng-click="open_contact_detail(data);">{{data.name}}</p>
+                            <div class="field_action" ng-click="open_contact_detail(data);">
+                                <p>View</p>
+                            </div>
+                        </td>
+                        <td class="blue_text">
+                            <a href="mailto:{{data.email}}">{{data.email}}</a>
+                        </td>
+                        <td class="blue_text">
+                            <a href="tel:+{{data.contact_no}}">{{data.contact_no}}</a>
+                        </td>
+                        <td>
+                            {{data.type}}
+                        </td>
+                        <td>
+                            {{data.date}} at {{data.time}} {{data.format}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="no_data_found" ng-if="all_inquires_list.length == 0">
+                <p>No Record Founds</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="page_limit_block">
+        <paging page="currentPage" page-size="pagelimit" total="totalRecords" show-prev-next="true"
+            show-first-last="true" hide-if-empty="totalRecords <= ((currentPage)*pagelimit)"
+            paging-action="load_all_inquires(page-1, pagelimit)"></paging>
+    </div>
+</div>
+
+<div class="contact_slide_wrapper" ng-class="{'active' : open_contact_slide}">
+    <div class="contact_slide_inner">
+        <div class="contact_slide_title">
+            <p>Inquirie Details</p>
+        </div>
+        <div class="slide_contact_detail">
+            <div class="contact_slide_details">
+                <div>
+                    <p>Name :</p>
+                </div>
+                <div>
+                    <p class="capitalize">{{slide_contact_detail.name}}</p>
+                </div>
+            </div>
+            <div class="contact_slide_details">
+                <div>
+                    <p>Email :</p>
+                </div>
+                <div>
+                    <p>{{slide_contact_detail.email}}</p>
+                </div>
+            </div>
+            <div class="contact_slide_details">
+                <div>
+                    <p>Contact :</p>
+                </div>
+                <div>
+                    <p>{{slide_contact_detail.contact_no}}</p>
+                </div>
+            </div>
+            <div class="contact_slide_details">
+                <div>
+                    <p>Inquiry Type :</p>
+                </div>
+                <div>
+                    <p>{{slide_contact_detail.type}}</p>
+                </div>
+            </div>
+            <div class="contact_slide_details" ng-if="slide_contact_detail.occupation">
+                <div>
+                    <p>Occupation :</p>
+                </div>
+                <div>
+                    <p>{{slide_contact_detail.occupation}}</p>
+                </div>
+            </div>
+            <div class="contact_slide_details" ng-if="slide_contact_detail.company_name">
+                <div>
+                    <p>Company Name :</p>
+                </div>
+                <div>
+                    <p>{{slide_contact_detail.company_name}}</p>
+                </div>
+            </div>
+            <div class="contact_slide_details" ng-if="slide_contact_detail.city">
+                <div>
+                    <p>City :</p>
+                </div>
+                <div>
+                    <p>{{slide_contact_detail.city}}</p>
+                </div>
+            </div>
+            <div class="contact_slide_details" ng-if="slide_contact_detail.state">
+                <div>
+                    <p>State :</p>
+                </div>
+                <div>
+                    <p>{{slide_contact_detail.state}}</p>
+                </div>
+            </div>
+            <div class="contact_slide_details" ng-if="slide_contact_detail.preferred_location">
+                <div>
+                    <p>Preferred Location :</p>
+                </div>
+                <div>
+                    <p>{{slide_contact_detail.preferred_location}}</p>
+                </div>
+            </div>
+            <div class="contact_slide_details" ng-if="slide_contact_detail.investment">
+                <div>
+                    <p>Investment :</p>
+                </div>
+                <div>
+                    <p>{{slide_contact_detail.investment}}</p>
+                </div>
+            </div>
+            <div class="contact_slide_details" ng-if="slide_contact_detail.why_invest">
+                <div>
+                    <p>Why Invest in Ev Sector? :</p>
+                </div>
+                <div>
+                    <p>{{slide_contact_detail.why_invest}}</p>
+                </div>
+            </div>
+            <div class="contact_slide_details" ng-if="slide_contact_detail.remarks">
+                <div>
+                    <p>Remarks :</p>
+                </div>
+                <div>
+                    <p>{{slide_contact_detail.remarks}}</p>
+                </div>
+            </div>
+            <div class="contact_slide_details">
+                <div>
+                    <p>Date :</p>
+                </div>
+                <div>
+                    <p>{{slide_contact_detail.date}} at {{slide_contact_detail.time}} {{slide_contact_detail.format}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide_popup_overlay" ng-class="{'active' : open_contact_slide}" ng-click="close_contact_detail();">
+</div>
+
+<div class="loading_page" ng-if="isDataLoading">
+    <div class="load"></div>
+</div>

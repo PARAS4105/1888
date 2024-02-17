@@ -1,0 +1,254 @@
+<div class="header_wrapper" ng-class="{'hide_header' : contactForm}">
+    <div class="header_flex">
+        <div class="header_logo visible-xs visible-sm">
+            <a href="{{base_url}}">
+                <img src="assets/images/logo/logo.svg" alt="">
+            </a>
+        </div>
+        <div class=" visible-xs visible-sm">
+            <div class="header_navigation_link">
+                <ul class="link-fonts">
+                    <li ng-if="!isMobileMenuOpen">
+                        <span ng-click="mobile_menu_click()" class="white-color">
+                            Menu
+                        </span>
+                    </li>
+                    <li ng-if="isMobileMenuOpen">
+                        <span ng-click="mobile_menu_click_close()" class="white-color">
+                            Close
+                        </span>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="header_logolink_flex hidden-xs hidden-sm">
+            <div class="header_logo">
+                <a href="{{base_url}}">
+                    <img src="assets/images/logo/logo.svg" alt="">
+                </a>
+            </div>
+            <div class="header_navigation_link">
+                <ul class="link-fonts">
+                    <li>
+                        <a href="javascript:void(0)">
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            Channel Partner
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="header-btn hidden-xs hidden-sm">
+
+            <button ng-click="openInquiry()">
+                <p class="white-color">
+                    Inquire Now
+                </p>
+                <div class="header-btn-arrow">
+                    <i class="right-arrow fa fa-arrow-right"></i>
+                </div>
+            </button>
+
+
+        </div>
+    </div>
+</div>
+
+<div class="visible-xs visible-sm">
+    <div class="mobile_menu_wrapper  " ng-class="{'active_menu' : isMobileMenuOpen}"></div>
+    <div class="mobile_main_menu inner-flex medium-gap-size" ng-class="{'active_menu' : isMobileMenuOpen}">
+        <div class="link-fonts">
+            <span class="navigation-text white-color">
+                Navigation
+            </span>
+        </div>
+        <div>
+            <div class="mobile-header-links">
+                <ul>
+                    <li>
+                        <a href="javascript:void(0)" ng-click="mobile_menu_click_close()">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" ng-click="mobile_menu_click_close()">
+                            About
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" ng-click="mobile_menu_click_close()">
+                            Channel Partner
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" ng-click="mobile_menu_click_close()">
+                            Contact
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="header-btn">
+            <button ng-click="openInquiry() ; mobile_menu_click_close()">
+                <p class="white-color">
+                    Inquire Now
+                </p>
+                <div class="header-btn-arrow">
+                    <i class="right-arrow fa fa-arrow-right"></i>
+                </div>
+            </button>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="inquiry_overlay" ng-class="{'inquiry_overlay_active' : contactForm }" ng-click="closeInquiry()"></div>
+<div class="contactInquiryWrapper" ng-class="{'active' : contactForm }">
+    <div class="testbox">
+        <form id="inquiry_form" name="inquiry_form" ng-submit="submit_inquiry(inquiry_form)"
+            ng-validate="contact_validate">
+            <div class="banner_image">
+                <div class="logo">
+                    <img src="assets/images/logo/logo.svg" alt="">
+                </div>
+            </div>
+            <div class="close-icon" ng-click="closeInquiry()">
+                <span class="material-symbols-outlined">
+                    close
+                </span>
+            </div>
+
+
+
+            <div class="question">
+                <p class="question_text">Preferred Way To Contact</p>
+                <div class="question-answer">
+                    <div>
+                        <input type="radio" value="General Inquiry" id="radio_6" name="type"
+                            ng-model="inquiry_obj.type">
+                        <label for="radio_6" class="radio"><span>General Inquiry</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="Sales Inquiry" id="radio_7" name="type" ng-model="inquiry_obj.type">
+                        <label for="radio_7" class="radio"><span>Sales Inquiry</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="Franchise Inquiry" id="radio_4" name="type"
+                            ng-model="inquiry_obj.type">
+                        <label for="radio_4" class="radio"><span>Franchise Inquiry</span></label>
+                    </div>
+                    <div>
+                        <input type="radio" value="Dealership Inquiry" id="radio_5" name="type"
+                            ng-model="inquiry_obj.type">
+                        <label for="radio_5" class="radio"><span>Dealership Inquiry</span></label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="colums">
+                <div class="item">
+                    <label class="field_label" for="name"> Name<span>*</span></label>
+                    <input id="name" type="text" name="name" required class="form_control" ng-model="inquiry_obj.name">
+                </div>
+                <div class="item">
+                    <label class="field_label" for="email"> Email<span>*</span></label>
+                    <input id="email" type="email" name="email" required class="form_control"
+                        ng-model="inquiry_obj.email">
+                </div>
+                <div class="item">
+                    <label class="field_label" for="contact_no">Contact No<span>*</span></label>
+                    <input id="contact_no" type="text" name="contact_no" required class="form_control"
+                        ng-model="inquiry_obj.contact_no" numbers-Only maxlength="10">
+                </div>
+                <div class="item">
+                    <label class="field_label" for="company_name">Company Name<span>*</span></label>
+                    <input id="company_name" type="text" name="company_name" class="form_control" required
+                        ng-model="inquiry_obj.company_name">
+                </div>
+                <div class="item" ng-if="inquiry_obj.type != 'General Inquiry' && inquiry_obj.type != 'Sales Inquiry'">
+                    <label class="field_label" for="occupation">Occupation</label>
+                    <select name="occupation" class="form_control" id="occupation" ng-model="inquiry_obj.occupation"
+                        aria-invalid="true">
+                        <option value="" selected disabled style="display: none;"></option>
+                        <option value="Business" class="capitalize">Business</option>
+                        <option value="Job" class="capitalize">Job</option>
+                        <option value="Other" class="capitalize">Other</option>
+                    </select>
+                </div>
+                <div class="item" ng-if="inquiry_obj.occupation == 'Other'">
+                    <label class="field_label" for="other_occupation">Other Occupation</label>
+                    <input id="other_occupation" type="text" name="other_occupation" class="form_control"
+                        ng-model="inquiry_obj.other_occupation">
+                </div>
+                <div class="item" ng-if="inquiry_obj.type != 'General Inquiry' && inquiry_obj.type != 'Sales Inquiry'">
+                    <label class="field_label" for="preferred_location">Preferred Location</label>
+                    <input id="preferred_location" type="text" name="preferred_location" class="form_control"
+                        ng-model="inquiry_obj.preferred_location">
+                </div>
+                <div class="item" ng-if="inquiry_obj.type != 'General Inquiry' && inquiry_obj.type != 'Sales Inquiry'">
+                    <label class="field_label" for="state">State<span>*</span></label>
+                    <select name="state" class="form_control" id="state" ng-model="inquiry_obj.state"
+                        aria-invalid="true" ng-change="city_code(inquiry_obj.state);" required>
+                        <option value="" selected disabled style="display: none;"></option>
+                        <option ng-repeat="data in state_list" value="{{data.id}}" class="capitalize">
+                            {{data.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="item" ng-if="inquiry_obj.type != 'General Inquiry' && inquiry_obj.type != 'Sales Inquiry'">
+                    <label class="field_label" for="city">City<span>*</span></label>
+                    <select name="city" class="form_control" id="city" ng-model="inquiry_obj.city" aria-invalid="true"
+                        required>
+                        <option value="" selected disabled style="display: none;"></option>
+                        <option ng-repeat="data in city_list" value="{{data.id}}" class="capitalize">
+                            {{data.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="item" ng-if="inquiry_obj.type != 'General Inquiry' && inquiry_obj.type != 'Sales Inquiry'">
+                    <label class="field_label" for="pincode">Pincode<span>*</span></label>
+                    <input id="pincode" type="text" name="pincode" class="form_control" ng-model="inquiry_obj.pincode"
+                        required numbers-Only maxlength="6" minlength="6">
+                </div>
+                <div class="item" ng-if="inquiry_obj.type == 'Franchise Inquiry'">
+                    <label class="field_label" for="investment">Investment</label>
+                    <select name="investment" class="form_control" id="investment" ng-model="inquiry_obj.investment"
+                        aria-invalid="true">
+                        <option value="" selected disabled style="display: none;"></option>
+                        <option value="15 Lakhs" class="capitalize">15 Lakhs</option>
+                        <option value="25 Lakhs" class="capitalize">25 Lakhs</option>
+                        <option value="40 Lakhs" class="capitalize">40 Lakhs</option>
+                    </select>
+                </div>
+            </div>
+            <div class="item other_option"
+                ng-if="inquiry_obj.type != 'General Inquiry' && inquiry_obj.type != 'Sales Inquiry'">
+                <label class="field_label" for="why_invest">Why You want to Invest in EV Sector?</label>
+                <textarea name="why_invest" id="why_invest" rows="7" class="form_control"
+                    ng-model="inquiry_obj.why_invest"></textarea>
+            </div>
+            <div class="item other_option">
+                <label class="field_label" for="remarks">Remarks</label>
+                <textarea name="remarks" id="remarks" rows="7" class="form_control"
+                    ng-model="inquiry_obj.remarks"></textarea>
+            </div>
+
+            <div class="btn-block">
+                <button type="submit" ng-disabled="addContactUs">{{contactUsSavetext}}</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,102 @@
+<div class="main_page_div" id="main_page_div">
+
+    <div class="profile_page_block">
+        <div class="page_title_flex">
+            <div class="page_title">
+                <h2>Profile</h2>
+            </div>
+        </div>
+    
+        <div class="page_content_block" ng-if="!isDataLoading">
+            <div class="profile_page_view">
+                <form role="form" name="profile_form" id="profile_form" ng-validate="profile_validate" ng-submit="save_profile(profile_form)" ng-show="!isLoadingDetails">
+                    <div class="page_form_flex">
+                        <div class="page_fiels_title">
+                            <p>Name :</p>
+                        </div>
+                        <div class="page_field_input">
+                            <div class="input_fields">
+                                <input type="text" name="name" id="name" ng-model="admin_obj.name" required class="form_control"
+                                    autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page_form_flex">
+                        <div class="page_fiels_title">
+                            <p>Email :</p>
+                        </div>
+                        <div class="page_field_input">
+                            <div class="input_fields">
+                                <input type="email" name="email_id" id="email_id" ng-model="admin_obj.email_id"
+                                    class="form_control" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page_form_flex">
+                        <div class="page_fiels_title">
+                            <p>Contact :</p>
+                        </div>
+                        <div class="page_field_input">
+                            <div class="input_fields">
+                                <input type="text" name="contact_no" id="contact_no" ng-model="admin_obj.contact_no"
+                                    class="form_control" autocomplete="off" number-Only maxlength="13" minlength="8">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page_form_flex">
+                        <div class="page_fiels_title">
+                            <p>Password :</p>
+                        </div>
+                        <div class="page_field_input">
+                            <div class="input_fields">
+                                <input type="text" name="password" id="password" ng-model="admin_obj.password"
+                                    class="form_control" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="page_form_flex" style="align-items: flex-start;">
+                        <div class="page_fiels_title">
+                            <p>Profile Image :</p>
+                        </div>
+                        <div class="page_field_input">
+                            <div class="relative">
+                                <div style="height: 150px;" ng-if="admin_obj.profile_image.name">
+                                    <img ngf-src="admin_obj.profile_image"
+                                        style="height: 150px; width: 150px; object-fit: contain;" class="img-responsive">
+                                </div>
+                                <div ng-if="!admin_obj.profile_image.name && admin_obj.profile_image">
+                                    <img src="{{admin_obj.profile_image}}" class="img-responsive"
+                                        style="height: 150px; width: 150px; object-fit: contain;">
+                                </div>
+                            
+                                <p>Click to edit or update</p>
+                                <input type="file" name="profile_image" id="profile_image" ngf-select=""
+                                    ng-model="admin_obj.profile_image" ngf-multiple="false"
+                                    accept="image/jpeg,image/jpg" class="input_inner upload_file_input_banner"
+                                    ng-required="!admin_obj.profile_image">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail_form_flex">
+                        <div class="page_action_buttons">
+                            <div class="project_detail_form_data">
+                                <div class="submit_button" style="width: fit-content; margin: 0 auto;">
+                                    <button type="submit" ng-disabled="isSubmitting">
+                                        <p ng-if="!isSubmitting">Submit</p>
+                                        <p ng-if="isSubmitting">Please wait..</p>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="loading_page" ng-if="isDataLoading">
+    <div class="load"></div>
+</div>

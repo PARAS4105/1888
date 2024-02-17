@@ -1,0 +1,326 @@
+<!-- <div class="login_wrapper">
+    <div class="login_block">
+        <form role="form" name="signin_form" id="signin_form" ng-validate="validateLoginForm"
+            ng-submit="submitLogin(signin_form)">
+            <div class="login_logo">
+                <img src="assets/images/logo-icon.svg" alt="">
+            </div>
+            <div class="login_form_block">
+                <div class="input_fields">
+                    <input type="text" name="email_id" id="email_id" ng-model="admindata.email_id" class="form_control"
+                        required="" autocomplete="off" placeholder="Email">
+                </div>
+                <div class="input_fields">
+                    <input type="password" name="password" id="password" ng-model="admindata.password"
+                        class="form_control" required="" autocomplete="off" placeholder="Password">
+                </div>
+                <div class="submit_button login_btn">
+                    <button type="submit">
+                        <p>{{LoginText}}</p>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div> -->
+
+<div class="login_page">
+    <div class="login_block_inner">
+        <div class="login_title">
+            <div class="login_logo">
+                <img src="assets/images/logo.svg" alt="">
+            </div>
+            <p>Login With Your Registered Email Id.</p>
+        </div>
+        <div class="login_form_flex">
+            <form role="form" name="signin_form" id="signin_form" ng-validate="validateLoginForm"
+                ng-submit="submitLogin(signin_form)">
+                <div class="login_form_block">
+                    <div class="input_fields relative">
+                        <input type="text" name="email_id" id="email_id" ng-model="admindata.email_id"
+                            class="login_form_control" required="" autocomplete="off">
+                        <label class="md_lable" for="email_id">Email Id *</label>
+                    </div>
+                    <div class="input_fields relative">
+                        <input type="{{password_show_f}}" name="password" id="password" ng-model="admindata.password"
+                            class="login_form_control" required="" autocomplete="off">
+                        <label class="md_lable" for="password">Password *</label>
+                        <div class="sub_icon" ng-click="password_show();">
+                            <span class="material-symbols-outlined" ng-if="password_show_f == 'password'">
+                                visibility
+                            </span>
+                            <span class="material-symbols-outlined" ng-if="password_show_f == 'text'">
+                                visibility_off
+                                </span>
+                        </div>
+                    </div>
+                    <div class="input_check_box_wrapepr" style="justify-content: flex-end; display: flex;">
+                        <div class="input_check_box_login">
+                            <input type="checkbox" id="remember_password" name="remember_password"
+                                class="input_check_box_login_input ng-pristine ng-untouched ng-valid ng-empty"
+                                ng-model="admindata.remember_password" aria-checked="false" aria-invalid="false">
+                            <label for="remember_password">
+                                <p class="input_check_box_login_p">
+                                    Remember Password
+                                </p>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="login_btn">
+                        <button type="submit" ng-class="{'enable' : admindata.password && admindata.email_id}">
+                            <p>{{LoginText}}</p>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<style>
+    .sub_icon {
+        width: 23px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 15px;
+        display: flex;
+        z-index: 2;
+    }
+
+    .input_check_box_login {
+        display: flex;
+        align-items: center;
+    }
+
+    .input_check_box_login_input {
+        padding: 0;
+        height: initial;
+        width: initial;
+        display: none;
+        cursor: pointer;
+        margin: 0 10px 0 0 !important;
+    }
+
+    .input_check_box_login label {
+        position: relative;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+        font-size: 16px;
+        line-height: 16px;
+        color: #6d7174;
+        display: flex;
+        align-items: center;
+    }
+
+    .input_check_box_login label:before {
+        content: '';
+        -webkit-appearance: none;
+        background-color: transparent;
+        border: 1px solid #3a3a3a;
+        box-shadow: none;
+        padding: 8px;
+        display: inline-block;
+        position: relative;
+        vertical-align: middle;
+        cursor: pointer;
+        margin: 0px 7px 0 0;
+    }
+
+    .input_check_box_login_p {
+        font-size: 16px;
+        line-height: 16px;
+        margin: 1px 0 0 0;
+    }
+
+    .input_check_box_login input:checked+label:after {
+        top: 3px;
+        left: 7px;
+        width: 5px;
+        height: 10px;
+    }
+
+    .input_check_box_login input:checked+label:after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 2px;
+        left: 7px;
+        width: 5px;
+        height: 11px;
+        border: solid #3a3a3a;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+    }
+
+    .input_check_box_login label {
+        position: relative;
+        cursor: pointer;
+        padding: 0;
+        margin: 0;
+        font-size: 16px;
+        line-height: 16px;
+        color: #6d7174;
+        display: flex;
+        align-items: center;
+    }
+
+    .login_logo {
+        width: 12rem;
+        margin: 0 auto;
+        padding-bottom: 3rem;
+    }
+
+    .login_btn button.enable {
+        background-color: #03a6ff;
+        pointer-events: unset;
+    }
+
+    .login_btn button {
+        background-color: #dbdbdb;
+        pointer-events: none;
+        height: 50px;
+        width: 180px;
+        border: 1px solid #e1e3e5;
+        margin: 20px auto 0 auto;
+        border-radius: 6px;
+        transition: all 0.6s ease;
+        box-shadow: none;
+        outline: none !important;
+        border: none;
+        width: 100%;
+    }
+
+    .login_btn button p {
+        font-size: 1.5rem;
+        color: var(--white-color);
+    }
+
+    .login_form_flex {
+        padding: 4rem 0;
+    }
+
+    .login_page {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        height: 100vh;
+        background-color: var(--white-color);
+    }
+
+    .login_block_inner {
+        width: 640px;
+        margin: 0 auto;
+    }
+
+    .login_title {
+        text-align: center;
+    }
+
+    .login_title h4 {
+        font-size: 4rem;
+        font-weight: 600;
+    }
+
+    .login_title p {
+        font-size: 1.5rem;
+        color: #6d7174;
+    }
+
+    .login_form_control {
+        box-shadow: none !important;
+        outline: none !important;
+        border: 1px solid #a9a9a9;
+        background-color: #ffffff;
+        font-size: 16px;
+        height: var(--height_50);
+        line-height: var(--height_50);
+        padding: 14px 15px;
+        color: #000;
+        z-index: 2;
+        border-radius: 6px;
+        position: relative;
+        width: 100%;
+    }
+
+    .md_lable {
+        color: #999999;
+        text-transform: capitalize;
+        padding: 4px 6px;
+        position: absolute;
+        top: 50%;
+        transition: all 0.1s ease;
+        transform: translateY(-50%);
+        left: 1rem;
+        font-size: 1.3rem;
+        line-height: 1;
+        pointer-events: none;
+        z-index: 99;
+    }
+
+
+    .login_form_block input:focus-visible~label.md_lable,
+    .login_form_block select:focus-visible~label.md_lable,
+    .login_form_block textarea:focus-visible~label.md_lable,
+    .login_form_block input.not_required~label.md_lable,
+    .login_form_block select.not_required~label.md_lable,
+    .login_form_block textarea.not_required~label.md_lable {
+        transition: all 0.1s ease;
+        top: 5%;
+        transform: translateY(-50%);
+        left: 0.3rem;
+        background: var(--white-color);
+        z-index: 5;
+        color: var(--black-color);
+        font-size: 14px;
+    }
+
+    .login_form_block input.ng-not-empty~label.md_lable,
+    .login_form_block textarea.ng-not-empty~label.md_lable,
+    .login_form_block select.ng-not-empty~label.md_lable {
+        transition: all 0.1s ease;
+        top: 5%;
+        transform: translateY(-50%);
+        left: 0.3rem;
+        background: var(--white-color);
+        z-index: 5;
+        color: var(--black-color);
+        font-size: 14px;
+    }
+
+    .login_form_control.error,
+    .login_form_control.error {
+        border: 1px solid #ff0000;
+    }
+
+
+    .login_form_block input.ng-not-empty~label.md_lable,
+    .login_form_block textarea.ng-not-empty~label.md_lable,
+    .login_form_block select.ng-not-empty~label.md_lable {
+        padding: 0 4px;
+        top: 0;
+        z-index: 2;
+        height: 14px;
+        line-height: 14px;
+        left: 6px;
+        font-size: 14px;
+        background-color: #ffffff;
+    }
+
+    .login_form_block input:focus~label.md_lable,
+    .login_form_block textarea:focus~label.md_lable,
+    .login_form_block select:focus~label.md_lable,
+    .login_form_block input.not_required~label.md_lable,
+    .login_form_block textarea.not_required~label.md_lable {
+        padding: 0 4px;
+        top: 0;
+        z-index: 2;
+        height: 14px;
+        line-height: 14px;
+        left: 6px;
+        font-size: 14px;
+        background-color: #ffffff;
+    }
+</style>

@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Neuropolitical Rg';
+    src: url('NeuropoliticalRg-Regular.woff2') format('woff2'),
+        url('NeuropoliticalRg-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
